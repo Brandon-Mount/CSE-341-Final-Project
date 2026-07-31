@@ -5,18 +5,16 @@
     "description": "API for managing video games and game developers.",
     "version": "1.0.0"
   },
-  "host": "cse-341-final-project-sdd1.onrender.com",
-  "basePath": "/",
-  "tags": [],
-  "schemes": ["https"],
-  "consumes": [],
-  "produces": [],
+  "servers": [
+    {
+      "url": "https://cse-341-final-project-sdd1.onrender.com",
+      "description": "Render production server"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
-        "tags": [],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -26,9 +24,7 @@
     },
     "/games/": {
       "get": {
-        "tags": [],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -39,43 +35,7 @@
         }
       },
       "post": {
-        "tags": [],
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "genre": {
-                  "example": "any"
-                },
-                "platform": {
-                  "example": "any"
-                },
-                "releaseYear": {
-                  "example": "any"
-                },
-                "developer": {
-                  "example": "any"
-                },
-                "console": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "multiplayer": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -86,19 +46,55 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "platform": {
+                    "example": "any"
+                  },
+                  "releaseYear": {
+                    "example": "any"
+                  },
+                  "developer": {
+                    "example": "any"
+                  },
+                  "console": {
+                    "example": "any"
+                  },
+                  "rating": {
+                    "example": "any"
+                  },
+                  "multiplayer": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
     "/games/{id}": {
       "get": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -117,46 +113,14 @@
         }
       },
       "put": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "genre": {
-                  "example": "any"
-                },
-                "platform": {
-                  "example": "any"
-                },
-                "releaseYear": {
-                  "example": "any"
-                },
-                "developer": {
-                  "example": "any"
-                },
-                "console": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "multiplayer": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -173,17 +137,53 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "genre": {
+                    "example": "any"
+                  },
+                  "platform": {
+                    "example": "any"
+                  },
+                  "releaseYear": {
+                    "example": "any"
+                  },
+                  "developer": {
+                    "example": "any"
+                  },
+                  "console": {
+                    "example": "any"
+                  },
+                  "rating": {
+                    "example": "any"
+                  },
+                  "multiplayer": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -204,9 +204,7 @@
     },
     "/developers/": {
       "get": {
-        "tags": [],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -217,34 +215,7 @@
         }
       },
       "post": {
-        "tags": [],
         "description": "",
-        "parameters": [
-          {
-            "name": "obj",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "country": {
-                  "example": "any"
-                },
-                "foundedYear": {
-                  "example": "any"
-                },
-                "headquarters": {
-                  "example": "any"
-                },
-                "website": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -255,19 +226,46 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "country": {
+                    "example": "any"
+                  },
+                  "foundedYear": {
+                    "example": "any"
+                  },
+                  "headquarters": {
+                    "example": "any"
+                  },
+                  "website": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
     "/developers/{id}": {
       "get": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -286,37 +284,14 @@
         }
       },
       "put": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "name": "obj",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "country": {
-                  "example": "any"
-                },
-                "foundedYear": {
-                  "example": "any"
-                },
-                "headquarters": {
-                  "example": "any"
-                },
-                "website": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -333,17 +308,44 @@
           "500": {
             "description": "Internal Server Error"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "country": {
+                    "example": "any"
+                  },
+                  "foundedYear": {
+                    "example": "any"
+                  },
+                  "headquarters": {
+                    "example": "any"
+                  },
+                  "website": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "tags": [],
         "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -358,96 +360,6 @@
           },
           "500": {
             "description": "Internal Server Error"
-          }
-        }
-      }
-    }
-  },
-  "definitions": {},
-  "servers": [
-    {
-      "url": "http://localhost:3000",
-      "description": "Local development server"
-    }
-  ],
-  "components": {
-    "schemas": {
-      "Game": {
-        "type": "object",
-        "required": [
-          "title",
-          "genre",
-          "platform",
-          "releaseYear",
-          "developer",
-          "console",
-          "rating",
-          "multiplayer"
-        ],
-        "properties": {
-          "title": {
-            "type": "string",
-            "example": "Minecraft"
-          },
-          "genre": {
-            "type": "string",
-            "example": "Sandbox"
-          },
-          "platform": {
-            "type": "string",
-            "example": "Multiple Platforms"
-          },
-          "releaseYear": {
-            "type": "integer",
-            "example": 2011
-          },
-          "developer": {
-            "type": "string",
-            "example": "Mojang Studios"
-          },
-          "console": {
-            "type": "string",
-            "example": "Xbox Series X"
-          },
-          "rating": {
-            "type": "number",
-            "example": 9
-          },
-          "multiplayer": {
-            "type": "boolean",
-            "example": true
-          }
-        }
-      },
-      "Developer": {
-        "type": "object",
-        "required": [
-          "name",
-          "country",
-          "foundedYear",
-          "headquarters",
-          "website"
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "example": "Mojang Studios"
-          },
-          "country": {
-            "type": "string",
-            "example": "Sweden"
-          },
-          "foundedYear": {
-            "type": "integer",
-            "example": 2009
-          },
-          "headquarters": {
-            "type": "string",
-            "example": "Stockholm, Sweden"
-          },
-          "website": {
-            "type": "string",
-            "example": "https://www.minecraft.net"
           }
         }
       }
