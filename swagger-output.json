@@ -5,12 +5,10 @@
     "description": "API for managing video games and game developers.",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "cse-341-final-project-sdd1.onrender.com",
   "basePath": "/",
   "tags": [],
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["https"],
   "consumes": [],
   "produces": [],
   "paths": {
