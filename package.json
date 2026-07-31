@@ -24,10 +24,11 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongodb": "^7.5.0",
-    "swagger-ui-express": "^5.0.1"
+    "swagger-ui-express": "^5.0.1",
+    "swagger-autogen": "^2.23.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
-    "swagger-autogen": "^2.9.2"
+    "swagger-autogen": "^2.23.7"
   }
 }
