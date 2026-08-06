@@ -11,5 +11,6 @@ router.use("/games", require("./games.js"));
 router.use("/developers", require("./developers.js"));
 router.use("/consoles", require("./consoles.js"));
 router.use("/users", require("./users.js"));
+router.use("/auth", require("./auth.js"));
 
 module.exports = router;
