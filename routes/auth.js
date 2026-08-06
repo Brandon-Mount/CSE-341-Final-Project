@@ -1,75 +1,34 @@
-const router = require("express").Router();
-const passport = require("passport");
-
-// Start GitHub OAuth login.
-router.get(
-  "/github",
-  passport.authenticate("github", {
-    scope: ["user:email"],
-  }),
-);
-
-// GitHub redirects here after login.
-router.get(
-  "/github/callback",
-  passport.authenticate("github", {
-    failureRedirect: "/auth/failure",
-  }),
-  (req, res) => {
-    res.redirect("/auth/success");
-  },
-);
-
-// Successful login.
-router.get("/success", (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).json({
-      message: "You are not logged in.",
-    });
-  }
-
-  return res.status(200).json({
-    message: "Login successful.",
-    user: req.user,
-  });
-});
-
-// Failed login.
-router.get("/failure", (req, res) => {
-  return res.status(401).json({
-    message: "GitHub login failed.",
-  });
-});
-
-// Check login status.
-router.get("/status", (req, res) => {
-  return res.status(200).json({
-    authenticated: req.isAuthenticated(),
-    user: req.user || null,
-  });
-});
-
-// Log out.
-router.get("/logout", (req, res, next) => {
-  req.logout((error) => {
+router.get("/github/callback", (req, res, next) => {
+  passport.authenticate("github", (error, user, info) => {
     if (error) {
-      return next(error);
+      console.error("GitHub OAuth callback error:", error);
+
+      return res.status(500).json({
+        message: "GitHub OAuth callback failed.",
+        error: error.message,
+      });
     }
 
-    req.session.destroy((sessionError) => {
-      if (sessionError) {
+    if (!user) {
+      console.error("GitHub OAuth returned no user:", info);
+
+      return res.status(401).json({
+        message: "GitHub authentication failed.",
+        details: info || null,
+      });
+    }
+
+    req.logIn(user, (loginError) => {
+      if (loginError) {
+        console.error("Session login error:", loginError);
+
         return res.status(500).json({
-          message: "Logout failed.",
+          message: "Authenticated with GitHub, but session login failed.",
+          error: loginError.message,
         });
       }
 
-      res.clearCookie("connect.sid");
-
-      return res.status(200).json({
-        message: "Logout successful.",
-      });
+      return res.redirect("/auth/success");
     });
-  });
+  })(req, res, next);
 });
-
-module.exports = router;
