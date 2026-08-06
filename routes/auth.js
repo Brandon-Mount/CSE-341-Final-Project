@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-// Start GitHub login
+// Start GitHub OAuth login.
 router.get(
   "/github",
   passport.authenticate("github", {
@@ -9,7 +9,7 @@ router.get(
   }),
 );
 
-// GitHub callback
+// GitHub redirects here after login.
 router.get(
   "/github/callback",
   passport.authenticate("github", {
@@ -20,7 +20,7 @@ router.get(
   },
 );
 
-// Login success
+// Successful login.
 router.get("/success", (req, res) => {
   if (!req.isAuthenticated()) {
     return res.status(401).json({
@@ -34,14 +34,14 @@ router.get("/success", (req, res) => {
   });
 });
 
-// Login failure
+// Failed login.
 router.get("/failure", (req, res) => {
   return res.status(401).json({
     message: "GitHub login failed.",
   });
 });
 
-// Check login status
+// Check login status.
 router.get("/status", (req, res) => {
   return res.status(200).json({
     authenticated: req.isAuthenticated(),
@@ -49,7 +49,7 @@ router.get("/status", (req, res) => {
   });
 });
 
-// Logout
+// Log out.
 router.get("/logout", (req, res, next) => {
   req.logout((error) => {
     if (error) {

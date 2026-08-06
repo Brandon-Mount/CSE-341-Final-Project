@@ -12,7 +12,7 @@ passport.use(
       const user = {
         githubId: profile.id,
         username: profile.username,
-        displayName: profile.displayName,
+        displayName: profile.displayName || profile.username,
         profileUrl: profile.profileUrl,
       };
 
