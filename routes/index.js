@@ -9,5 +9,7 @@ router.get("/", (req, res) => {
 router.use("/", require("./swagger.js"));
 router.use("/games", require("./games.js"));
 router.use("/developers", require("./developers.js"));
+router.use("/consoles", require("./consoles.js"));
+router.use("/users", require("./users.js"));
 
 module.exports = router;
